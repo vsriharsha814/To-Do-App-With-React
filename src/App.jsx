@@ -1,26 +1,21 @@
 import { useState } from "react";
 import "./styles.css";
+import { NewToDoForm } from "./NewToDoForm";
+import { ToDoList } from "./ToDoList";
 
 export default function App() {
-  const [newItem, setNewItem] = useState("");
   const [toDos, setToDos] = useState([]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    if (newItem.trim() !== '') {
-      setToDos((currentToDos) => {
-        return [
-          ...currentToDos,
-          { id: crypto.randomUUID(), title: newItem, completed: false },
-        ];
-      });
-    }
-
-    setNewItem("");
+  function addToDo(title) {
+    setToDos((currentToDos) => {
+      return [
+        ...currentToDos,
+        { id: crypto.randomUUID(), title, completed: false },
+      ];
+    });
   }
 
-  function toggleTodo(id, completed) {
+  function toggleToDo(id, completed) {
     console.log("enter here", id, completed);
     setToDos((currentToDos) => {
       return currentToDos.map((toDo) => {
@@ -40,43 +35,9 @@ export default function App() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="new-item-form">
-        <div className="form-row">
-          <label htmlFor="item">New Item</label>
-          <input
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-            type="text"
-            id="item"
-            autoComplete="off"
-          />
-        </div>
-        <button className="btn">Add</button>
-      </form>
+      <NewToDoForm onSubmit={addToDo} />
       <h1>Todo List</h1>
-      <ul className="list">
-        {toDos.length === 0 && "No ToDos found"}
-        {toDos.map((toDo) => {
-          return (
-            <li key={toDo.id}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={toDo.completed}
-                  onChange={(e) => toggleTodo(toDo.id, e.target.checked)}
-                />
-                {toDo.title}
-              </label>
-              <button
-                onClick={() => deleteToDo(toDo.id)}
-                className="btn btn-danger"
-              >
-                Delete
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <ToDoList toDos={toDos} toggleToDo={toggleToDo} deleteToDo={deleteToDo} />
     </>
   );
 }
