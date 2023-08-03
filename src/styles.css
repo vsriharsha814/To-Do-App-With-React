@@ -113,7 +113,7 @@ body {
 }
 
 .list li input[type="checkbox"]:checked::before {
-    content: '\2713'; /* Checkmark Unicode character */
+    content: "✔"; /* Checkmark Unicode character */
     font-size: 1.2rem;
     color: #fff; /* Set the color of the checkmark */
     display: inline-block;
