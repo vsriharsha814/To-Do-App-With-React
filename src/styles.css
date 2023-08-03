@@ -93,10 +93,6 @@ body {
     transition: color 0.3s ease;
 }
 
-.list li input[type="checkbox"]:checked + label {
-    color: hsl(200, 100%, 50%); /* Highlight label color when checkbox is checked */
-}
-
 .list li input[type="checkbox"] {
     appearance: none;
     border: 2px solid #999;
