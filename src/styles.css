@@ -89,4 +89,39 @@ body {
     gap: 0.25rem;
     cursor: pointer;
     align-items: center;
+    color: hsl(0, 0%, 60%); /* Dim label color */
+    transition: color 0.3s ease;
+}
+
+.list li input[type="checkbox"]:checked + label {
+    color: hsl(200, 100%, 50%); /* Highlight label color when checkbox is checked */
+}
+
+.list li input[type="checkbox"] {
+    appearance: none;
+    border: 2px solid #999;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 0.25rem;
+    transition: border-color 0.3s ease;
+    margin-right: 0.5rem;
+}
+
+.list li input[type="checkbox"]:checked {
+    border-color: #007bff;
+    background-color: #007bff;
+}
+
+.list li input[type="checkbox"]:checked::before {
+    content: '\2713'; /* Checkmark Unicode character */
+    font-size: 1.2rem;
+    color: #fff; /* Set the color of the checkmark */
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    text-align: center;
+    line-height: 1.2rem;
+    border-radius: 0.25rem;
+    background-color: #007bff;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
