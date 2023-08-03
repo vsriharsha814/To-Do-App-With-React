@@ -19,7 +19,7 @@ export default function App() {
   }
 
   function toggleTodo(id, completed) {
-    // console.log("enter here", id, completed);
+    console.log("enter here", id, completed);
     setToDos((currentToDos) => {
       return currentToDos.map((toDo) => {
         if (toDo.id === id) {
@@ -27,6 +27,12 @@ export default function App() {
         }
         return toDo;
       });
+    });
+  }
+
+  function deleteToDo(id) {
+    setToDos((currentToDos) => {
+      return currentToDos.filter((toDo) => toDo.id !== id);
     });
   }
 
@@ -57,7 +63,12 @@ export default function App() {
                 />
                 {toDo.title}
               </label>
-              <button className="btn btn-danger">Delete</button>
+              <button
+                onClick={() => deleteToDo(toDo.id)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
             </li>
           );
         })}
