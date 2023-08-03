@@ -8,12 +8,14 @@ export default function App() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setToDos((currentToDos) => {
-      return [
-        ...currentToDos,
-        { id: crypto.randomUUID(), title: newItem, completed: false },
-      ];
-    });
+    if (newItem.trim() !== '') {
+      setToDos((currentToDos) => {
+        return [
+          ...currentToDos,
+          { id: crypto.randomUUID(), title: newItem, completed: false },
+        ];
+      });
+    }
 
     setNewItem("");
   }
@@ -46,6 +48,7 @@ export default function App() {
             onChange={(e) => setNewItem(e.target.value)}
             type="text"
             id="item"
+            autoComplete="off"
           />
         </div>
         <button className="btn">Add</button>
